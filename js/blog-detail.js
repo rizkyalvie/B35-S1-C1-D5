@@ -97,7 +97,6 @@ function getProjectDuration(endDate, startDate) {
         let dayDistance = distance / (miliseconds * secondInHour * hourInDay)
 
         if (dayDistance >= 30) {
-            let monthDistance = Math.floor(dayDistance / dayInMonth) - 30
             return `${Math.floor(dayDistance / dayInMonth)}` + ` Month`
         } else {
             return `${Math.floor(dayDistance)}` + ' day'
