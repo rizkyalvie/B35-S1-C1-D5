@@ -87,7 +87,7 @@ function getProjectDuration(endDate, startDate) {
 
     if (dayDistance >= 30) {
         let monthDistance = Math.floor(dayDistance) - 30
-        return `1 Month`
+        return `${Math.floor(dayDistance)}` + ` Month`
     } else {
         return `${Math.floor(dayDistance)}` + ' day'
     }
@@ -121,7 +121,7 @@ function renderCard() {
             </a>
             </div>
             <div class="mpc-duration">
-                <small>${duration}</small>
+                <small>Durasi: ${duration}</small>
             </div>
             <div class="mpc-content">
                 ${blogs[i].content}
