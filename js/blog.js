@@ -60,18 +60,6 @@ function addBlog(event) {
     renderCard()
 }
 
-function getFullTime(time) {
-
-    const date = time.getDate();
-    const monthIndex = time.getMonth();
-    const year = time.getFullYear();
-    const hour = time.getHours();
-    const minute = time.getMinutes();
-
-
-
-}
-
 function getProjectDuration(endDate, startDate) {
 
     const distance = endDate - startDate

@@ -76,18 +76,6 @@ function renderBlog() {
     }
 }
 
-function getFullTime(time) {
-
-    const date = time.getDate();
-    const monthIndex = time.getMonth();
-    const year = time.getFullYear();
-    const hour = time.getHours();
-    const minute = time.getMinutes();
-
-
-
-}
-
 function getProjectDuration(endDate, startDate) {
 
     const data = JSON.parse(localStorage.getItem(decodeURIComponent(window.location.search.substring(1))))
