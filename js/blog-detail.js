@@ -90,22 +90,30 @@ function getFullTime(time) {
 
 function getProjectDuration(endDate, startDate) {
 
-    const distance = endDate - startDate
+    const data = JSON.parse(localStorage.getItem(decodeURIComponent(window.location.search.substring(1))))
 
-    const miliseconds = 1000
-    const secondInMinute = 60
-    const minuteInHour = 60
-    const secondInHour = secondInMinute * minuteInHour // 3600
-    const hourInDay = 23
-    const dayInMonth = 30
+    for (let i = 0; i < data.length; i++) {
 
-    let dayDistance = distance / (miliseconds * secondInHour * hourInDay)
+        startDate = new Date(data[i].duration.startDate)
+        endDate = new Date(data[i].duration.endDate)
 
-    if (dayDistance >= 30) {
-        let monthDistance = Math.floor(dayDistance) - 30
-        return `1 Month`
-    } else {
-        return `${Math.floor(dayDistance)}` + ' day'
+        const distance = endDate - startDate
+
+        const miliseconds = 1000
+        const secondInMinute = 60
+        const minuteInHour = 60
+        const secondInHour = secondInMinute * minuteInHour // 3600
+        const hourInDay = 23
+        const dayInMonth = 30
+
+        let dayDistance = distance / (miliseconds * secondInHour * hourInDay)
+
+        if (dayDistance >= 30) {
+            let monthDistance = Math.floor(dayDistance / dayInMonth) - 30
+            return `${Math.floor(dayDistance / dayInMonth)}` + ` Month`
+        } else {
+            return `${Math.floor(dayDistance)}` + ' day'
+        }
     }
 
 }
