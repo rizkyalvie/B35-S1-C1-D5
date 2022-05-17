@@ -68,6 +68,8 @@ function getFullTime(time) {
     const hour = time.getHours();
     const minute = time.getMinutes();
 
+
+
 }
 
 function getProjectDuration(endDate, startDate) {
@@ -114,7 +116,7 @@ function renderCard() {
                 <img src="${blogs[i].image}" alt="">
             </div>
             <div class="mpc-title">
-            <a href="#" onclick="renderBlog(event)" id='${blogs[i].title}'>
+            <a href="blog-detail.html?${blogs[i].title}" id='${blogs[i].title}' target="_blank" action="blog-detail.html?${blogs[i].title}">
                 <p>${blogs[i].title}</p>
             </a>
             </div>
@@ -139,70 +141,70 @@ function renderCard() {
     }
 }
 
-function renderBlog(event) {
+// function renderBlog(event) {
 
-    let keyName;
+//     let keyName;
 
-    if (event) {
+//     if (event) {
 
-        keyName = event.path[1].id;
+//         keyName = event.path[1].id;
 
-        const myProjectBody = document.getElementById('myProjectBody');
+//         const myProjectBody = document.getElementById('myProjectBody');
 
-        const data = JSON.parse(localStorage.getItem(keyName))
+//         const data = JSON.parse(localStorage.getItem(keyName))
 
-        myProjectBody.innerHTML = '';
+//         myProjectBody.innerHTML = '';
 
 
 
-        for (let i = 0; i < data.length; i++) {
+//         for (let i = 0; i < data.length; i++) {
 
-            const startDateVariable = new Date(blogs[i].date.startDate)
-            const endDateVariable = new Date(blogs[i].date.endDate)
-            const duration = getProjectDuration(endDateVariable, startDateVariable)
+//             const startDateVariable = new Date(blogs[i].date.startDate)
+//             const endDateVariable = new Date(blogs[i].date.endDate)
+//             const duration = getProjectDuration(endDateVariable, startDateVariable)
 
-            myProjectBody.innerHTML += `
-            <div id="blog-detail">
-        <!--BD = Blog Detail-->
-        <div class="bd-title">
-            <p>${data[i].title}</p>
-        </div>
-        <!--IDC = Image, Duration, Categories-->
-        <div class="bd-idc">
-            <div class="idc-left">
-                <img src="${data[i].image}" alt="Blog Image">
-            </div>
-            <div class="idc-right">
-                <p>Duration</p>
-                <div class="bd-duration">
-                    <div style="padding-left: 2px;">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <p>${startDateVariable} - ${endDateVariable}</p>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-clock"></i>
-                        <p>${duration}</p>
-                    </div>
-                </div>
-                <div class="bd-tech">
-                    <p>Technologies</p>
-                    <div class="tech-body">
-                    ${(data[i].icons.html === true) ? '<div class="tech-html"><i class="fa-brands fa-html5"></i><p>HTML</p></div>' : ''}
-                    ${(data[i].icons.css === true) ? '<div class="tech-css"><i class="fa-brands fa-css3-alt"></i><p>CSS</p></div>' : ''}
-                    ${(data[i].icons.nodeJs === true) ? '<div class="tech-node"><i class="fa-brands fa-node-js"></i><p>nodeJs</p></div>' : ''}
-                    ${(data[i].icons.reactJs === true) ? '<div class="tech-react"><i class="fa-brands fa-react"></i><p>reactJs</p></div>' : ''}
-                    </div>
-                </div>
-            </div>
-        </div>
+//             myProjectBody.innerHTML += `
+//             <div id="blog-detail">
+//         <!--BD = Blog Detail-->
+//         <div class="bd-title">
+//             <p>${data[i].title}</p>
+//         </div>
+//         <!--IDC = Image, Duration, Categories-->
+//         <div class="bd-idc">
+//             <div class="idc-left">
+//                 <img src="${data[i].image}" alt="Blog Image">
+//             </div>
+//             <div class="idc-right">
+//                 <p>Duration</p>
+//                 <div class="bd-duration">
+//                     <div style="padding-left: 2px;">
+//                         <i class="fa-solid fa-calendar-days"></i>
+//                         <p>${startDateVariable} - ${endDateVariable}</p>
+//                     </div>
+//                     <div>
+//                         <i class="fa-solid fa-clock"></i>
+//                         <p>${duration}</p>
+//                     </div>
+//                 </div>
+//                 <div class="bd-tech">
+//                     <p>Technologies</p>
+//                     <div class="tech-body">
+//                     ${(data[i].icons.html === true) ? '<div class="tech-html"><i class="fa-brands fa-html5"></i><p>HTML</p></div>' : ''}
+//                     ${(data[i].icons.css === true) ? '<div class="tech-css"><i class="fa-brands fa-css3-alt"></i><p>CSS</p></div>' : ''}
+//                     ${(data[i].icons.nodeJs === true) ? '<div class="tech-node"><i class="fa-brands fa-node-js"></i><p>nodeJs</p></div>' : ''}
+//                     ${(data[i].icons.reactJs === true) ? '<div class="tech-react"><i class="fa-brands fa-react"></i><p>reactJs</p></div>' : ''}
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
 
-        <div class="bd-content">
-            <p>
-                ${data[i].content}
-            </p>
-        </div>
-    </div>
-            `
-        }
-    }
-}
+//         <div class="bd-content">
+//             <p>
+//                 ${data[i].content}
+//             </p>
+//         </div>
+//     </div>
+//             `
+//         }
+//     }
+// }

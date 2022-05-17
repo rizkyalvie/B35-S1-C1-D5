@@ -549,7 +549,7 @@ textarea::-webkit-scrollbar-thumb {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 20px 140px;
+    gap: 20px 75px;
     padding: 0px 70px 0px 70px;
 }
 
@@ -653,6 +653,10 @@ textarea::-webkit-scrollbar-thumb {
     display: flex;
     padding: 0px 50px;
     gap: 20px;
+}
+
+.bd-idc p {
+    word-spacing: 3px;
 }
 
 .idc-left {

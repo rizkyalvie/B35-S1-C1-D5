@@ -1,55 +1,113 @@
-document.getElementById("blog-detail").innerHTML = `
-    <div class="bd-title">
-        <p>${blogs[i].title}</p>
-    </div>
-    <div class="bd-idc">
-    <div class="idc-left">
-        <img src="${blogs[i].image}" alt="Blog Image">
-    </div>
-    <div class="idc-right">
-        <p>Duration</p>
-        <div class="bd-duration">
-            <div style="padding-left: 2px;">
-                <i class="fa-solid fa-calendar-days"></i>
-                <p>1 Jan 2021 - 1 Feb 2021</p>
-            </div>
-            <div>
-                <i class="fa-solid fa-clock"></i>
-                <p>1 Month</p>
-            </div>
-        </div>
-        <div class="bd-tech">
-            <p>Technologies</p>
-            <div class="i-tech">
-                <!--TI = Tech Icon-->
-                <div class="ti-left">
-                    <div>
-                    ${(blogs[i].icons.html === true) ? '<i class="fa-brands fa-html5"></i>' : ''}
-                        <p>HTML</p>
-                    </div>
-                    <div>
-                    ${(blogs[i].icons.nodeJs === true) ? '<i class="fa-brands fa-node-js"></i>' : ''}
-                        <p>nodeJs </p>
-                    </div>
-                </div>
-                <div class="ti-right">
-                    <div>
-                    ${(blogs[i].icons.css === true) ? '<i class="fa-brands fa-css3-alt"></i>' : ''}
-                        <p>CSS</p>
-                    </div>
-                    <div>
-                    ${(blogs[i].icons.reactJs === true) ? '<i class="fa-brands fa-react"></i>' : ''}
-                        <p>ReactJs</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+let month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec"
+]
 
-<div class="bd-content">
-    <p>
-        ${blogs[i].content}
-    </p>
-</div>
-    `;
+function renderBlog() {
+
+    const myProjectBody = document.getElementById('blog-detail');
+
+    const data = JSON.parse(localStorage.getItem(decodeURIComponent(window.location.search.substring(1))))
+
+    console.table(data)
+
+    console.table(data[0].duration.startDate)
+
+    for (let i = 0; i < data.length; i++) {
+
+        const SDV = new Date(data[i].duration.startDate)
+        const EDV = new Date(data[i].duration.endDate)
+        const duration = getProjectDuration(EDV, SDV)
+
+        console.log(duration)
+
+        myProjectBody.innerHTML = `
+            <div id="blog-detail">
+        <!--BD = Blog Detail-->
+        <div class="bd-title">
+            <p>${data[i].title}</p>
+        </div>
+        <!--IDC = Image, Duration, Categories-->
+        <div class="bd-idc">
+            <div class="idc-left">
+                <img src="${data[i].image}" alt="Blog Image">
+            </div>
+            <div class="idc-right">
+                <p>Duration</p>
+                <div class="bd-duration">
+                    <div style="padding-left: 2px;">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <p>${SDV.getDate()} ${month[SDV.getMonth()]} ${SDV.getFullYear()} - ${EDV.getDate()} ${month[EDV.getMonth()]} ${EDV.getFullYear()}</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        <p>${duration}</p>
+                    </div>
+                </div>
+                <div class="bd-tech">
+                    <p>Technologies</p>
+                    <div class="tech-body">
+                    ${(data[i].icons.html === true) ? '<div class="tech-html"><i class="fa-brands fa-html5"></i><p>HTML</p></div>' : ''}
+                    ${(data[i].icons.css === true) ? '<div class="tech-css"><i class="fa-brands fa-css3-alt"></i><p>CSS</p></div>' : ''}
+                    ${(data[i].icons.nodeJs === true) ? '<div class="tech-node"><i class="fa-brands fa-node-js"></i><p>nodeJs</p></div>' : ''}
+                    ${(data[i].icons.reactJs === true) ? '<div class="tech-react"><i class="fa-brands fa-react"></i><p>reactJs</p></div>' : ''}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bd-content">
+            <p>
+                ${data[i].content}
+            </p>
+        </div>
+    </div>
+            `
+    }
+}
+
+function getFullTime(time) {
+
+    const date = time.getDate();
+    const monthIndex = time.getMonth();
+    const year = time.getFullYear();
+    const hour = time.getHours();
+    const minute = time.getMinutes();
+
+
+
+}
+
+function getProjectDuration(endDate, startDate) {
+
+    const distance = endDate - startDate
+
+    const miliseconds = 1000
+    const secondInMinute = 60
+    const minuteInHour = 60
+    const secondInHour = secondInMinute * minuteInHour // 3600
+    const hourInDay = 23
+    const dayInMonth = 30
+
+    let dayDistance = distance / (miliseconds * secondInHour * hourInDay)
+
+    if (dayDistance >= 30) {
+        let monthDistance = Math.floor(dayDistance) - 30
+        return `1 Month`
+    } else {
+        return `${Math.floor(dayDistance)}` + ' day'
+    }
+
+}
+
+renderBlog()
