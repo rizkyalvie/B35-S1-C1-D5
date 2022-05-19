@@ -21,14 +21,14 @@ function renderBlog() {
 
     console.table(data)
 
-    console.table(data[0].duration.startDate)
+
 
     for (let i = 0; i < data.length; i++) {
 
-        const SDV = new Date(data[i].duration.startDate)
-        const EDV = new Date(data[i].duration.endDate)
+        const SDV = new Date(data[i].date.startDate)
+        const EDV = new Date(data[i].date.endDate)
         const duration = getProjectDuration(EDV, SDV)
-
+        console.table(data[i].date.startDate)
         console.log(duration)
 
         myProjectBody.innerHTML = `
@@ -82,8 +82,8 @@ function getProjectDuration(endDate, startDate) {
 
     for (let i = 0; i < data.length; i++) {
 
-        startDate = new Date(data[i].duration.startDate)
-        endDate = new Date(data[i].duration.endDate)
+        startDate = new Date(data[i].date.startDate)
+        endDate = new Date(data[i].date.endDate)
 
         const distance = endDate - startDate
 

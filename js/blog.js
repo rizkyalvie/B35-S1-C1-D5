@@ -32,11 +32,6 @@ function addBlog(event) {
 
     inputImage = URL.createObjectURL(inputImage)
 
-    let cardDuration = {
-        startDate: document.getElementById('inputStartDate').value,
-        endDate: document.getElementById('inputEndDate').value
-    }
-
     let cardIcons = {
         html: document.querySelector('input[name="checkHtml"]').checked,
         css: document.querySelector('input[name="checkCss"]').checked,
@@ -49,7 +44,6 @@ function addBlog(event) {
         date: projectDate,
         content: inputContent,
         icons: cardIcons,
-        duration: cardDuration,
         image: inputImage
     }
 
